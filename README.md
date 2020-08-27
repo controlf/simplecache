@@ -4,9 +4,21 @@ The simplecache package provides support for reading Chromium simple cache v9 (o
 
 Learn more: http://www.chromium.org/developers/design-documents/network-stack/disk-cache/very-simple-backend
 
-See the [example_test.go](example_test.go) for an example of how to read an image from cache in testdata.
+See the [example_test.go](example_test.go) for an example of how to read an image from cache in testdata (does not work with this repo as the test data is too old).
 
 This project also includes a tool to read the cache from command line, read this [README](cmd/simplecache).
+
+## Instructions
+
+1. Install [Go](https://golang.org/) on your workstation - this guide will assume Windows 10
+2. Open a cmd prompt and run `go get github.com/controlf/simplecache`
+3. Then run `go install github.com/controlf/simplecache`
+4. Copy [main.go](cmd/simplecache/main.go) out to any directory that you can start a cmd prompt from
+5. Open a cmd prompt in the directory containing main.go and run `go run main.go list <Cache>` where `<Cache>` is the folder containing your cached artefacts. You may want to redirect this to a text file for review (add `> list.txt` to the end of the command)
+6. After identifying the artefact URL you're interested in, you can run the following commands:
+  * `go run main.go header <url> <Cache>` to display HTTP header info
+  * `go run main.go body <url> <Cache> > <output_file_name>` to save out the cached artefact
+
 
 
 ## Short cache format
