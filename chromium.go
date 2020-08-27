@@ -9,7 +9,7 @@ import (
 
 const (
 	indexMagicNumber uint64 = 0x656e74657220796f
-	indexVersion     uint32 = 6
+	indexVersion     uint32 = 9
 
 	indexHeaderSize int64 = 36
 	indexEntrySize  int64 = 24
@@ -20,8 +20,8 @@ const (
 	finalMagicNumber   uint64 = 0xf4fa6f45970d41d8
 	entryVersion       uint32 = 5
 
-	entryHeaderSize int64 = 20
-	entryEOFSize    int64 = 20
+	entryHeaderSize int64 = 24
+	entryEOFSize    int64 = 24
 
 	flagCRC32  uint32 = 1
 	flagSHA256 uint32 = 2 // (1U << 1)
@@ -62,6 +62,7 @@ type entryHeader struct {
 	Version uint32
 	KeyLen  int32
 	KeyHash uint32
+	Pad     int32
 }
 
 // entryEOF ends a stream in an entry file.
@@ -70,6 +71,7 @@ type entryEOF struct {
 	Flag       uint32
 	CRC        uint32
 	StreamSize int32
+	Pad     int32
 }
 
 // HasCRC32
