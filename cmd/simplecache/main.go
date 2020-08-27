@@ -1,4 +1,4 @@
-// Command simplecache helps reading chromium simple cache v6 or v7.
+// Command simplecache helps reading chromium simple cache v9.
 //
 //  Usage:
 //	simplecache command [url] path
