@@ -17,10 +17,10 @@ import (
 	"log"
 	"os"
 
-	"github.com/schorlet/simplecache"
+	"github.com/controlf/simplecache"
 )
 
-const usage = `simplecache helps reading chromium simple cache v6 or v7.
+const usage = `simplecache helps reading chromium simple cache v9.
 
 Usage:
     simplecache command [url] path
