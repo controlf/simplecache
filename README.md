@@ -1,6 +1,6 @@
 # simplecache [![GoDoc](https://godoc.org/github.com/schorlet/simplecache?status.png)](https://godoc.org/github.com/schorlet/simplecache)
 
-The simplecache package provides support for reading Chromium simple cache v6 or v7.
+The simplecache package provides support for reading Chromium simple cache v9 (other versions untested).
 
 Learn more: http://www.chromium.org/developers/design-documents/network-stack/disk-cache/very-simple-backend
 
@@ -30,8 +30,8 @@ The simple cache contains different files:
  offset | size | value              | description
  ------ | ---- | ------------------ | -----------
  0      | 8    | 0x656e74657220796f | Magic
- 8      | 4    | 7                  | Version
- 12     | 8    | 0x0                | Padding
+ 8      | 4    | 9                  | Version
+ 12     | 12   | 0x0                | Padding
 
 
 
@@ -56,7 +56,7 @@ The index file header (struct indexHeader) is 36 bytes in size and consists of:
  0      | 4    |                    | Payload size
  4      | 4    |                    | Payload CRC32
  8      | 8    | 0x656e74657220796f | Magic
- 16     | 4    | 7                  | Version
+ 16     | 4    | 9                  | Version
  20     | 8    |                    | Number of entries
  28     | 8    |                    | Cache size
 
@@ -94,20 +94,21 @@ Overview:
 #### File header
 
 
-The index file header (struct entryHeader) is 20 bytes in size and consists of:
+The index file header (struct entryHeader) is 24 bytes in size and consists of:
 
  offset | size | value              | description
  ------ | ---- | ------------------ | -----------
  0      | 8    | 0xfcfb6d1ba7725c30 | Magic
  8      | 4    | 5                  | Version
  12     | 4    |                    | URL length
- 16     | 4    |                    | URL MD5
+ 16     | 4    |                    | URL hash
+ 20     | 4    | 0x0                | null byte padding
 
 
 
 #### Stream EOF
 
-The separator (struct entryEOF) contains information about the stream above. It is 20 bytes in size and consists of:
+The separator (struct entryEOF) contains information about the stream above. It is 24 bytes in size and consists of:
 
  offset | size | value              | description
  ------ | ---- | ------------------ | -----------
@@ -115,6 +116,7 @@ The separator (struct entryEOF) contains information about the stream above. It 
  8      | 4    |                    | Flag
  12     | 4    |                    | stream CRC32
  16     | 4    |                    | stream size
+ 20     | 4    | 0x0                | null byte padding
 
 
 
@@ -155,14 +157,15 @@ Overview:
 #### File header
 
 
-The index file header (struct entryHeader) is 20 bytes in size and consists of:
+The index file header (struct entryHeader) is 24 bytes in size and consists of:
 
  offset | size | value              | description
  ------ | ---- | ------------------ | -----------
  0      | 8    | 0xfcfb6d1ba7725c30 | Magic
- 8      | 4    | 7                  | Version
+ 8      | 4    | 5                  | Version
  12     | 4    |                    | URL length
  16     | 4    |                    | URL MD5
+ 20     | 4    | 0x0                | null byte padding
 
 
 
