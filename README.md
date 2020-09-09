@@ -10,7 +10,7 @@ This project also includes a tool to read the cache from command line, read this
 
 ## Instructions
 
-1. Install [Go](https://golang.org/) on your workstation - this guide will assume Windows 10
+1. Install [Go](https://golang.org/) and [Git](https://git-scm.com/downloads) on your workstation - this guide will assume Windows 10
 2. Open a cmd prompt and run `go get github.com/controlf/simplecache`
 3. Then run `go install github.com/controlf/simplecache`
 4. Copy [main.go](cmd/simplecache/main.go) out to any directory that you can start a cmd prompt from
